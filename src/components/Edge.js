@@ -37,8 +37,8 @@ const Edge = ({ node1, node2 }) => {
         ]}
         stroke="#000"
         fill="#000"
-        strokeWidth={1}
-        pointerWidth={6}
+        strokeWidth={2}
+        pointerWidth={0}
       />
       <Text
         fill="red"
