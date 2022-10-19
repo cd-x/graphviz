@@ -1,7 +1,8 @@
+import StageInternal from "./UI/StageInternal";
 function App() {
   return (
     <div className="App">
-      <h1> welcome</h1>
+      <StageInternal />
     </div>
   );
 }
