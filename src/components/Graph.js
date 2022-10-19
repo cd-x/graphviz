@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Layer, Circle } from "react-konva";
 import Edge from "./Edge";
+import Vertex from "./Vertex";
 
 const BLUE1_DEFAULTS = {
   x: 100,
@@ -38,6 +39,7 @@ const Graph = (props) => {
           setBlue2Node({ ...blue2Node, ...e.target.position() });
         }}
       />
+      <Vertex label="23" xStart={150} yStart={300} />
     </Layer>
   );
 };
