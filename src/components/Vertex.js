@@ -1,39 +1,31 @@
-import { useState } from "react";
 import { Group, Circle, Text } from "react-konva";
 import { randomColor } from "../utilities/Utility";
 
 const { backgroundColor, foregroundColor } = randomColor();
-const Vertex = ({ label, xStart, yStart }) => {
-  const [position, setPosition] = useState({
-    x: xStart,
-    y: yStart,
-  });
+
+const Vertex = ({ label, xStart, yStart, onVertexMove }) => {
   const dragMoveHandler = (e) => {
     const { x, y } = e.target.position();
-    setPosition((position) => {
-      return {
-        ...position,
-        x: x,
-        y: y,
-      };
-    });
+    onVertexMove({ id: label, x, y });
   };
+
   return (
     <Group>
       <Circle
-        x={position.x}
-        y={position.y}
+        x={xStart}
+        y={yStart}
         fill={backgroundColor}
-        radius={20}
+        radius={25}
         stroke="black"
+        shadowBlur={10}
         strokeWidth={2}
         draggable={true}
         onDragMove={dragMoveHandler}
       />
       <Text
         fill={foregroundColor}
-        x={position.x - 5}
-        y={position.y - 5}
+        x={xStart - 5}
+        y={yStart - 5}
         align="center"
         verticalAlign="middle"
         text={label}
