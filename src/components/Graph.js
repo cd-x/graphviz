@@ -3,8 +3,8 @@ import { Layer } from "react-konva";
 import Edge from "./Edge";
 import Vertex from "./Vertex";
 
-const WINDOW_WIDTH = window.innerWidth;
-const WINDOW_HEIGHT = window.innerHeight;
+const WINDOW_WIDTH = window.innerWidth - 30;
+const WINDOW_HEIGHT = window.innerHeight - 30;
 
 const VERTICES = (function () {
   const number = 10;
