@@ -10,7 +10,7 @@ import GraphEditor from "../components/GraphEditor";
 const Tools = () => {
   const [activeTool, setActiveTool] = useState("disable");
 
-  const isEditGraph = true;
+  const isEditGraph = activeTool === "editGraph";
   const handleChange = (event, newAlignment) => {
     setActiveTool(newAlignment);
   };
