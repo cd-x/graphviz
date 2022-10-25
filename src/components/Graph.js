@@ -2,21 +2,43 @@ import { useState } from "react";
 import { Layer } from "react-konva";
 import Edge from "./Edge";
 import Vertex from "./Vertex";
+import { randomColor } from "../utilities/Utility";
 
-const EDGES = [[0, 1]];
+const WINDOW_WIDTH = window.innerWidth;
+const WINDOW_HEIGHT = window.innerHeight;
 
-const VERTICES = [
-  {
-    id: 0,
-    x: 100,
-    y: 100,
-  },
-  {
-    id: 1,
-    x: 100,
-    y: 300,
-  },
-];
+const VERTICES = (function () {
+  const number = 10;
+  let result = [];
+  while (result.length < number) {
+    result.push({
+      id: "V-" + result.length,
+      x: WINDOW_WIDTH * Math.random(),
+      y: WINDOW_HEIGHT * Math.random(),
+    });
+  }
+  return result;
+})();
+
+const EDGES = (function () {
+  const number = 10;
+  let result = [];
+  while (result.length < number) {
+    var from = "V-" + Math.floor(Math.random() * VERTICES.length);
+    var to = "V-" + Math.floor(Math.random() * VERTICES.length);
+    if (from === to) {
+      continue;
+    }
+    result.push({
+      id: "connector-" + result.length,
+      from: from,
+      to: to,
+    });
+  }
+  return result;
+})();
+
+const { backgroundColor, foregroundColor } = randomColor();
 
 const Graph = (props) => {
   const [points, setPoints] = useState(VERTICES);
@@ -33,19 +55,24 @@ const Graph = (props) => {
       {points.map((p) => {
         return (
           <Vertex
-            label={p.id}
+            key={p.id}
+            id={p.id}
             xStart={p.x}
             yStart={p.y}
             onVertexMove={vertexMoveHandler}
+            foregroundColor={foregroundColor}
+            backgroundColor={backgroundColor}
           />
         );
       })}
-      {EDGES.map((edge) => {
+      {/* {EDGES.map((edge, index) => {
         const [u, v] = edge;
         const node1 = points.find((p) => p.id === u);
         const node2 = points.find((p) => p.id === v);
-        return <Edge node1={node1} node2={node2} />;
-      })}
+        return (
+          <Edge key={Math.random().toString()} node1={node1} node2={node2} />
+        );
+      })} */}
     </Layer>
   );
 };

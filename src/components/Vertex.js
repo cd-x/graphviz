@@ -1,12 +1,11 @@
 import { Group, Circle, Text } from "react-konva";
-import { randomColor } from "../utilities/Utility";
 
-const { backgroundColor, foregroundColor } = randomColor();
-
-const Vertex = ({ label, xStart, yStart, onVertexMove }) => {
+const Vertex = (props) => {
+  const { id, xStart, yStart, onVertexMove, backgroundColor, foregroundColor } =
+    props;
   const dragMoveHandler = (e) => {
     const { x, y } = e.target.position();
-    onVertexMove({ id: label, x, y });
+    onVertexMove({ id, x, y });
   };
 
   return (
@@ -28,7 +27,7 @@ const Vertex = ({ label, xStart, yStart, onVertexMove }) => {
         y={yStart - 5}
         align="center"
         verticalAlign="middle"
-        text={label}
+        text={id}
       />
     </Group>
   );
