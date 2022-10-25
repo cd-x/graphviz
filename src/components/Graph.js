@@ -52,6 +52,12 @@ const Graph = (props) => {
   };
   return (
     <Layer>
+      {EDGES.map((edgeItem) => {
+        const { id, from, to } = edgeItem;
+        const fromNode = points.find((p) => p.id === from);
+        const toNode = points.find((p) => p.id === to);
+        return <Edge from={fromNode} to={toNode} key={id} />;
+      })}
       {points.map((p) => {
         return (
           <Vertex
@@ -65,14 +71,6 @@ const Graph = (props) => {
           />
         );
       })}
-      {/* {EDGES.map((edge, index) => {
-        const [u, v] = edge;
-        const node1 = points.find((p) => p.id === u);
-        const node2 = points.find((p) => p.id === v);
-        return (
-          <Edge key={Math.random().toString()} node1={node1} node2={node2} />
-        );
-      })} */}
     </Layer>
   );
 };
