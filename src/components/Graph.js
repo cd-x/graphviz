@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Layer } from "react-konva";
 import Edge from "./Edge";
 import Vertex from "./Vertex";
-import { randomColor } from "../utilities/Utility";
 
 const WINDOW_WIDTH = window.innerWidth;
 const WINDOW_HEIGHT = window.innerHeight;
@@ -38,8 +37,6 @@ const EDGES = (function () {
   return result;
 })();
 
-const { backgroundColor, foregroundColor } = randomColor();
-
 const Graph = (props) => {
   const [points, setPoints] = useState(VERTICES);
   const vertexMoveHandler = ({ id, x, y }) => {
@@ -66,8 +63,6 @@ const Graph = (props) => {
             xStart={p.x}
             yStart={p.y}
             onVertexMove={vertexMoveHandler}
-            foregroundColor={foregroundColor}
-            backgroundColor={backgroundColor}
           />
         );
       })}

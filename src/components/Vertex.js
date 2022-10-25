@@ -1,8 +1,7 @@
 import { Group, Circle, Text } from "react-konva";
 
 const Vertex = (props) => {
-  const { id, xStart, yStart, onVertexMove, backgroundColor, foregroundColor } =
-    props;
+  const { id, xStart, yStart, onVertexMove } = props;
   const dragMoveHandler = (e) => {
     const { x, y } = e.target.position();
     onVertexMove({ id, x, y });
@@ -13,7 +12,6 @@ const Vertex = (props) => {
       <Circle
         x={xStart}
         y={yStart}
-        fill={backgroundColor}
         radius={25}
         stroke="black"
         shadowBlur={10}
@@ -22,7 +20,6 @@ const Vertex = (props) => {
         onDragMove={dragMoveHandler}
       />
       <Text
-        fill={foregroundColor}
         x={xStart - 5}
         y={yStart - 5}
         align="center"
