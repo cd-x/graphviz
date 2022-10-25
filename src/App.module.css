@@ -1,0 +1,8 @@
+.App {
+  position: relative;
+}
+
+.Tools {
+  position: absolute;
+  z-index: 10;
+}
