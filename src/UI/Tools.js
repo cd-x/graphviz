@@ -1,68 +1,45 @@
+import ToggleButton from "@mui/material/ToggleButton";
+import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import { Fragment, useState } from "react";
-import AddCircleIcon from "@mui/icons-material/AddCircle";
-import { MenuItem, Menu, IconButton } from "@mui/material";
+import DoNotTouchIcon from "@mui/icons-material/DoNotTouch";
+import InsightsIcon from "@mui/icons-material/Insights";
+import GestureIcon from "@mui/icons-material/Gesture";
+import AutoFixHighOutlinedIcon from "@mui/icons-material/AutoFixHighOutlined";
+import GraphEditor from "../components/GraphEditor";
 
 const Tools = () => {
-  const [triggerElement, setTriggerElement] = useState(null);
-  const [isDrawing, setIsDrwaing] = useState(false);
-  let toolItems = ["Graph"];
-  toolItems.push(isDrawing ? "Eraser" : "Pen");
-  const open = Boolean(triggerElement);
+  const [activeTool, setActiveTool] = useState("disable");
 
-  const handleClick = (event) => {
-    setTriggerElement(event.currentTarget);
+  const isEditGraph = true;
+  const handleChange = (event, newAlignment) => {
+    setActiveTool(newAlignment);
   };
-  const handleClose = () => {
-    setTriggerElement(null);
-  };
-  const menuItemClickHandler = (e) => {
-    const val = e.target.innerText;
-    if (val === "Pen") {
-      setIsDrwaing(true);
-    }
-    if (val === "Eraser") {
-      setIsDrwaing(false);
-    }
-    handleClose();
-  };
+
   return (
     <Fragment>
-      <IconButton
-        aria-label="more"
-        id="long-button"
-        aria-controls={open ? "tool-menu" : undefined}
-        aria-expanded={open ? "true" : undefined}
-        aria-haspopup="true"
-        onClick={handleClick}
+      <ToggleButtonGroup
+        color="primary"
+        value={activeTool}
+        exclusive
+        onChange={handleChange}
+        aria-label="Platform"
+        orientation="vertical"
       >
-        <AddCircleIcon color="primary" />
-      </IconButton>
-      <Menu
-        id="tool-menu"
-        MenuListProps={{
-          "aria-labelledby": "long-button",
-        }}
-        anchorEl={triggerElement}
-        open={open}
-        onClose={handleClose}
-        PaperProps={{
-          style: {
-            maxHeight: 48 * 4.5,
-            width: "20ch",
-            opacity: "5",
-          },
-        }}
-      >
-        {toolItems.map((option) => (
-          <MenuItem
-            key={option}
-            selected={option === "Pyxis"}
-            onClick={menuItemClickHandler}
-          >
-            {option}
-          </MenuItem>
-        ))}
-      </Menu>
+        <ToggleButton value="disable">
+          <DoNotTouchIcon />
+        </ToggleButton>
+        <ToggleButton value="draw">
+          <GestureIcon />
+        </ToggleButton>
+        <ToggleButton value="erase">
+          <AutoFixHighOutlinedIcon />
+        </ToggleButton>
+        <ToggleButton value="editGraph">
+          <InsightsIcon />
+        </ToggleButton>
+      </ToggleButtonGroup>
+
+      {isEditGraph && <GraphEditor />}
     </Fragment>
   );
 };

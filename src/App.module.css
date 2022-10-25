@@ -5,4 +5,6 @@
 .Tools {
   position: absolute;
   z-index: 10;
+  padding-left: 3px;
+  padding-top: 3px;
 }
