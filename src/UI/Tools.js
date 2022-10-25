@@ -1,12 +1,12 @@
 import { Fragment, useState } from "react";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
-import IconButton from "@mui/material/IconButton";
-import Menu from "@mui/material/Menu";
-import { MenuItem } from "@mui/material";
+import { MenuItem, Menu, IconButton } from "@mui/material";
 
 const Tools = () => {
   const [triggerElement, setTriggerElement] = useState(null);
-  const [toolItems, setToolItems] = useState(["Draw", "Graph"]);
+  const [isDrawing, setIsDrwaing] = useState(false);
+  let toolItems = ["Graph"];
+  toolItems.push(isDrawing ? "Eraser" : "Pen");
   const open = Boolean(triggerElement);
 
   const handleClick = (event) => {
@@ -15,12 +15,22 @@ const Tools = () => {
   const handleClose = () => {
     setTriggerElement(null);
   };
+  const menuItemClickHandler = (e) => {
+    const val = e.target.innerText;
+    if (val === "Pen") {
+      setIsDrwaing(true);
+    }
+    if (val === "Eraser") {
+      setIsDrwaing(false);
+    }
+    handleClose();
+  };
   return (
     <Fragment>
       <IconButton
         aria-label="more"
         id="long-button"
-        aria-controls={open ? "long-menu" : undefined}
+        aria-controls={open ? "tool-menu" : undefined}
         aria-expanded={open ? "true" : undefined}
         aria-haspopup="true"
         onClick={handleClick}
@@ -39,6 +49,7 @@ const Tools = () => {
           style: {
             maxHeight: 48 * 4.5,
             width: "20ch",
+            opacity: "5",
           },
         }}
       >
@@ -46,7 +57,7 @@ const Tools = () => {
           <MenuItem
             key={option}
             selected={option === "Pyxis"}
-            onClick={handleClose}
+            onClick={menuItemClickHandler}
           >
             {option}
           </MenuItem>
