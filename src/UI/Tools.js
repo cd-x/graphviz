@@ -6,12 +6,19 @@ import InsightsIcon from "@mui/icons-material/Insights";
 import GestureIcon from "@mui/icons-material/Gesture";
 import AutoFixHighOutlinedIcon from "@mui/icons-material/AutoFixHighOutlined";
 import GraphEditor from "../components/GraphEditor";
+import { useDispatch } from "react-redux";
+import { toolsActions } from "../store/slices/tools-slice";
+import { graphActions } from "../store/slices/graph-slice";
 
 const Tools = () => {
   const [activeTool, setActiveTool] = useState(null);
-
+  const dispatch = useDispatch();
   const isEditGraph = activeTool === "editGraph";
   const handleChange = (event, newAlignment) => {
+    dispatch(toolsActions.setTool({ activeTool: newAlignment }));
+    if (newAlignment === "clearAll") {
+      dispatch(graphActions.clearAll());
+    }
     setActiveTool(newAlignment);
   };
 

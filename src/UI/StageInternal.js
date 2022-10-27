@@ -2,14 +2,19 @@ import Draw from "../components/Draw";
 import { useState, useRef } from "react";
 import { Stage } from "react-konva";
 import Graph from "../components/Graph";
+import { useSelector } from "react-redux";
 
 const StageInternal = () => {
-  const tool = "pen";
+  const activeTool = useSelector((state) => state.tools.activeTool);
+  const isDrawingTool = activeTool === "draw" || activeTool === "erase";
+  const tool = activeTool === "draw" ? "pen" : "eraser";
   const [lines, setLines] = useState([]);
   const isDrawing = useRef(false);
 
   const handleMouseDown = (e) => {
-    isDrawing.current = true;
+    if (isDrawingTool) {
+      isDrawing.current = true;
+    }
     const pos = e.target.getStage().getPointerPosition();
     setLines([...lines, { tool, points: [pos.x, pos.y] }]);
   };

@@ -92,6 +92,10 @@ const graphSlice = createSlice({
         return _from !== from || _to !== to;
       });
     },
+    clearAll(state, action) {
+      state.edges = [];
+      state.vertices = [];
+    },
   },
 });
 
