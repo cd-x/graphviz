@@ -1,13 +1,17 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Layer } from "react-konva";
 import Edge from "./Edge";
 import Vertex from "./Vertex";
 import { useSelector } from "react-redux";
 
 const Graph = (props) => {
-  const vertices = useSelector((state) => state.graph.vertices);
-  const edges = useSelector((state) => state.graph.edges);
+  const { vertices, edges } = useSelector((state) => state.graph);
   const [points, setPoints] = useState(vertices);
+
+  useEffect(() => {
+    setPoints(vertices);
+  }, [vertices]);
+
   const vertexMoveHandler = ({ id, x, y }) => {
     setPoints((prevPoints) => {
       const idx = prevPoints.findIndex((pp) => pp.id === id);
