@@ -1,14 +1,14 @@
 import ToggleButton from "@mui/material/ToggleButton";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import { Fragment, useState } from "react";
-import DoNotTouchIcon from "@mui/icons-material/DoNotTouch";
+import DeleteSweepIcon from "@mui/icons-material/DeleteSweep";
 import InsightsIcon from "@mui/icons-material/Insights";
 import GestureIcon from "@mui/icons-material/Gesture";
 import AutoFixHighOutlinedIcon from "@mui/icons-material/AutoFixHighOutlined";
 import GraphEditor from "../components/GraphEditor";
 
 const Tools = () => {
-  const [activeTool, setActiveTool] = useState("disable");
+  const [activeTool, setActiveTool] = useState(null);
 
   const isEditGraph = activeTool === "editGraph";
   const handleChange = (event, newAlignment) => {
@@ -25,8 +25,8 @@ const Tools = () => {
         aria-label="Platform"
         orientation="vertical"
       >
-        <ToggleButton value="disable">
-          <DoNotTouchIcon />
+        <ToggleButton value="clearAll">
+          <DeleteSweepIcon />
         </ToggleButton>
         <ToggleButton value="draw">
           <GestureIcon />
