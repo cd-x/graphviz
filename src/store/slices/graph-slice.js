@@ -76,6 +76,9 @@ const graphSlice = createSlice({
     },
     removeNode(state, action) {
       const id = "V-" + action.payload.id;
+      state.edges = state.edges.filter(
+        (edge) => edge.from !== id && edge.to !== id
+      );
       state.vertices = state.vertices.filter((v) => v.id !== id);
     },
     removeEdge(state, action) {
