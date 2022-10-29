@@ -14,17 +14,7 @@ This project aims to give a visualizer tool for understanding Graph Algorithms.
 
 ## Demo
 
-- Graph Creation
-  ![Creation](./docs/images/creation.gif)
-
-- Graph Deletion
-  ![Deletion](./docs/images/deletion.gif)
-
-- Free Draw
-  ![Free Drawing](./docs/images/draw.gif)
-
-- Cleaning Canvas
-  ![Clear](./docs/images/cleaning.gif)
+| ![Creation](./docs/images/creation.gif) | ![Deletion](./docs/images/deletion.gif) | ![Free Drawing](./docs/images/draw.gif) | ![Clear](./docs/images/cleaning.gif)
 
 ## Screenshots
 
