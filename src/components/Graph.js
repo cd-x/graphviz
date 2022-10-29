@@ -9,7 +9,17 @@ const Graph = (props) => {
   const [points, setPoints] = useState(vertices);
 
   useEffect(() => {
-    setPoints(vertices);
+    setPoints((prevPoints) => {
+      let newPoints = [...prevPoints];
+      vertices.forEach((v) => {
+        const isExisting =
+          newPoints.find((existingPoint) => existingPoint.id === v.id) || null;
+        if (!isExisting) {
+          newPoints.push(v);
+        }
+      });
+      return newPoints;
+    });
   }, [vertices]);
 
   const vertexMoveHandler = ({ id, x, y }) => {

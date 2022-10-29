@@ -36,6 +36,9 @@ const StageInternal = () => {
   };
 
   const handleMouseUp = () => {
+    if (isDrawingTool) {
+      console.log("##mouse up!");
+    }
     isDrawing.current = false;
   };
   return (
