@@ -10,14 +10,17 @@ const Graph = (props) => {
 
   useEffect(() => {
     setPoints((prevPoints) => {
-      let newPoints = [...prevPoints];
-      vertices.forEach((v) => {
-        const isExisting =
-          newPoints.find((existingPoint) => existingPoint.id === v.id) || null;
-        if (!isExisting) {
-          newPoints.push(v);
+      let verticesObj = {};
+      vertices.forEach((vx) => (verticesObj[vx.id] = vx));
+      let newPoints = [];
+      prevPoints.forEach((p) => {
+        const vxItem = verticesObj[p.id] || null;
+        if (vxItem) {
+          newPoints.push(p);
+          delete verticesObj[p.id];
         }
       });
+      newPoints = newPoints.concat(Object.values(verticesObj));
       return newPoints;
     });
   }, [vertices]);
