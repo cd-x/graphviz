@@ -2,6 +2,7 @@ import { Group, Circle, Text } from "react-konva";
 
 const Vertex = (props) => {
   const { id, xStart, yStart, onVertexMove } = props;
+  const nodeLabel = id.substring(2);
   const dragMoveHandler = (e) => {
     const { x, y } = e.target.position();
     onVertexMove({ id, x, y });
@@ -24,7 +25,7 @@ const Vertex = (props) => {
         y={yStart - 5}
         align="center"
         verticalAlign="middle"
-        text={id}
+        text={nodeLabel}
       />
     </Group>
   );
