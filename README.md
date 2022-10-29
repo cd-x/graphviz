@@ -15,17 +15,24 @@ This project aims to give a visualizer tool for understanding Graph Algorithms.
 ## Demo
 
 - Graph Creation
-  ![Creation](./docs/images/creation-45.mov)
+  ![Creation](./docs/images/creation.gif)
+
+- Graph Deletion
+  ![Deletion](./docs/images/deletion.gif)
+
+- Free Draw
+  ![Free Drawing](./docs/images/draw.gif)
+
+- Cleaning Canvas
+  ![Clear](./docs/images/cleaning.gif)
 
 ## Screenshots
 
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+![App Screenshot](./docs/images/Screenshot.png)
 
 ## Tech Stack
 
-**Client:** React, Redux, TailwindCSS
-
-**Server:** Node, Express
+**Client:** React, Redux, ConvaJS
 
 ## Run Locally
 
@@ -59,7 +66,7 @@ I'm a full stack developer...
 
 ## License
 
-[MIT](https://choosealicense.com/licenses/mit/)
+[MIT](https://github.com/cd-x/graphviz/blob/master/LICENSE)
 
 ## Badges
 
