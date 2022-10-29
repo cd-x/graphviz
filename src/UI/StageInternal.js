@@ -1,5 +1,5 @@
 import Draw from "../components/Draw";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Stage } from "react-konva";
 import Graph from "../components/Graph";
 import { useSelector } from "react-redux";
@@ -10,6 +10,12 @@ const StageInternal = () => {
   const tool = activeTool === "draw" ? "pen" : "eraser";
   const [lines, setLines] = useState([]);
   const isDrawing = useRef(false);
+
+  useEffect(() => {
+    if (activeTool === "clearAll") {
+      setLines([]);
+    }
+  }, [activeTool]);
 
   const handleMouseDown = (e) => {
     if (isDrawingTool) {
@@ -36,9 +42,6 @@ const StageInternal = () => {
   };
 
   const handleMouseUp = () => {
-    if (isDrawingTool) {
-      console.log("##mouse up!");
-    }
     isDrawing.current = false;
   };
   return (
